@@ -13,8 +13,9 @@ def getData(request):
 def newData(request):
     gotDataDic = json.loads(request.body.decode("utf-8"))
     print(gotDataDic,type(gotDataDic))
-    newTrain = costGenerator.CostGenrator(int(gotDataDic["each1"]),int(gotDataDic["no"]),0)
+    newTrain = costGenerator.CostGenrator(int(gotDataDic["wagcap"]),int(gotDataDic["wagno"]),0,gotDataDic["graphPlot"])
     result = newTrain.generateCost()
+    # print(result)
     returnData = {"routePoints":result[0],"totalCost":result[1],"weightFull":result[2]}
     print(returnData)
     return Response(json.dumps(returnData))
