@@ -4,4 +4,5 @@ from django.conf import settings
 
 urlpatterns = [
 path('', views.getData),
+path('api/',views.newData)
 ]

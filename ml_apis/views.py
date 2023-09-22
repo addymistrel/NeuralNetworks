@@ -6,3 +6,7 @@ from rest_framework.decorators import api_view
 @api_view(['GET'])
 def getData(request):
     return Response("my name is Aditya")
+
+@api_view(['GET'])
+def newData(request):
+    return Response("Aditya is a good boy")
