@@ -30,6 +30,7 @@ class CostGenrator:
     def generateCost(self):
         pointDistance = self.pointDistance
         finalRoute = []
+        finalweight = []
         totalCost = 0
         initialCap = 0
         maxCap = self.perCap*self.no
@@ -55,11 +56,19 @@ class CostGenrator:
                 break
             currPos = str(selPoint)
             initialCap+=self.getWagLoadVal((minePoints[int(currPos)]),maxCap)
+            prev = self.loaded
             self.loaded = initialCap
             totalCost+=selCost
             finalRoute.append(selPoint)
-        print(finalRoute,totalCost,self.loaded)
-        return finalRoute,totalCost,self.loaded
+            finalweight.append(str(self.loaded-prev))
+        stockFactor = 0
+        for k in range(len(finalRoute)):
+            xfactor = math.floor(int(finalweight[k])/self.perCap*self.no)
+            ni = len(finalRoute)-k
+            stockFactor+=(xfactor*ni)
+        stockFactor = math.floor(stockFactor/len(finalRoute))
+        print(finalRoute,totalCost,self.loaded,finalweight,stockFactor)
+        return finalRoute,totalCost,self.loaded,finalweight,stockFactor
 
 # int1 = int(input("Enter Capacity per Wagon = "))
 # int2 = int(input("Enter No. of wagons = "))
