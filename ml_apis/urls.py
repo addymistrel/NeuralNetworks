@@ -3,6 +3,7 @@ from . import views
 from django.conf import settings
 
 urlpatterns = [
-path('', views.getData),
-path('getRoute/',views.newData)
+    path('', views.getData),
+    path('getRoute/', views.newData),
+    path('checkRoute', views.mloutput)
 ]
